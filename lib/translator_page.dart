@@ -42,7 +42,7 @@ class _TranslatorPageState extends State<TranslatorPage> {
       appBar: AppBar(
         actions: [
           GestureDetector(
-            //onTap: () => Navigator.of(context).pushNamed('/'),
+            onTap: () => Navigator.of(context).pushNamed('/history'),
             child: Padding(
               padding: const EdgeInsets.only(right: 10, bottom: 12, top: 12),
               child: Icon(Icons.history),
