@@ -1,11 +1,11 @@
 {
-    "name": "mobile_project_translation_app",
-    "short_name": "mobile_project_translation_app",
+    "name": "android_project",
+    "short_name": "android_project",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A mobile translation app",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
