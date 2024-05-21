@@ -1,3 +1,4 @@
+import 'package:android_project/translation_history_view.dart';
 import 'package:flutter/material.dart';
 import 'translator_page.dart';
 
@@ -10,14 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Translator App',
-      // routes: {
-      //   '/': (context) => TranslatorPage()
-      //   '/converter': (context) => ConverterScreen()
-      // },
+      routes: {
+        '/': (context) => TranslatorPage(),
+        '/history': (context) => TranslationHistoryView()
+      },
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: TranslatorPage(),
     );
   }
 }
