@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:firebase_database/firebase_database.dart';
+
 
 class TranslatorPage extends StatefulWidget {
   @override
@@ -27,9 +29,18 @@ class _TranslatorPageState extends State<TranslatorPage> {
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
+      String translatedText = responseData['data']['translations'][0]['translatedText'];
       setState(() {
-        _outputController.text =
-        responseData['data']['translations'][0]['translatedText'];
+        _outputController.text = translatedText;
+      });
+
+      // Save the translation to Firebase
+      DatabaseReference ref = FirebaseDatabase.instance.ref('translations');
+      await ref.push().set({
+        'inputText': text,
+        'translatedText': translatedText,
+        'language': _selectedLanguage,
+        'timestamp': DateTime.now().toIso8601String(),
       });
     } else {
       throw Exception('Failed to load translation: ${response.statusCode}');

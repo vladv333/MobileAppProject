@@ -33,7 +33,8 @@ dependencies:
   http: ^1.2.1
   googleapis: ^13.1.0
   google_translator: any
-
+  firebase_core: ^2.3.0
+  firebase_database: ^10.0.0
 
 
 
