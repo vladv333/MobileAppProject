@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "431980349274",
+    "firebase_url": "https://mobileproject-b5dd1-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mobileproject-b5dd1",
+    "storage_bucket": "mobileproject-b5dd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431980349274:android:33bbd5ac84bfebf3bad563",
+        "android_client_info": {
+          "package_name": "com.example.android_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyyU8yZqGFf4xdvt6eScnmDoXhdmW0sDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
