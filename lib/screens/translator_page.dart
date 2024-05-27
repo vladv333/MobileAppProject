@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:firebase_database/firebase_database.dart';
-
+import '../controllers/translation_controller.dart';
 
 class TranslatorPage extends StatefulWidget {
   @override
@@ -13,37 +10,22 @@ class _TranslatorPageState extends State<TranslatorPage> {
   final TextEditingController _inputController = TextEditingController();
   final TextEditingController _outputController = TextEditingController();
   String _selectedLanguage = 'eng'; // Default language code
-  String _apiKey = 'AIzaSyAnhYIWlFUEf0fxTalpsl4uBZ5FpfmIYlE'; // Replace with your actual API key
+  late TranslationService _translationService;
+
+  @override
+  void initState() {
+    super.initState();
+    _translationService = TranslationService(apiKey: 'AIzaSyAnhYIWlFUEf0fxTalpsl4uBZ5FpfmIYlE');
+  }
 
   Future<void> _translateText(String text) async {
-    final response = await http.post(
-      Uri.parse('https://translation.googleapis.com/language/translate/v2?key=$_apiKey'),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: json.encode({
-        'q': text,
-        'target': _selectedLanguage, // Target language code
-      }),
-    );
-
-    if (response.statusCode == 200) {
-      final responseData = json.decode(response.body);
-      String translatedText = responseData['data']['translations'][0]['translatedText'];
+    try {
+      String translatedText = await _translationService.translateText(text, _selectedLanguage);
       setState(() {
         _outputController.text = translatedText;
       });
-
-      // Save the translation to Firebase
-      DatabaseReference ref = FirebaseDatabase.instance.ref('translations');
-      await ref.push().set({
-        'inputText': text,
-        'translatedText': translatedText,
-        'language': _selectedLanguage,
-        'timestamp': DateTime.now().toIso8601String(),
-      });
-    } else {
-      throw Exception('Failed to load translation: ${response.statusCode}');
+    } catch (e) {
+      print('Error translating text: $e');
     }
   }
 
